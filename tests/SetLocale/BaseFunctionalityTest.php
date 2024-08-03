@@ -1,6 +1,6 @@
 <?php
 
-namespace DanJohnson95\LaravelI18nCompatibility\Tests;
+namespace DanJohnson95\LaravelI18nCompatibility\Tests\SetLocale;
 
 use Orchestra\Testbench\Concerns\WithWorkbench;
 use Orchestra\Testbench\TestCase;
@@ -9,10 +9,17 @@ class BaseFunctionalityTest extends TestCase
 {
     use WithWorkbench;
 
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        app()->setLocale('es');
+    }
+
     public function test_it_returns_the_string_for_the_given_language()
     {
         $this->assertEquals(
-            'This is a single string',
+            'Este es un solo string',
             __('laravel_standard_test.single_string'),
         );
     }
@@ -20,9 +27,9 @@ class BaseFunctionalityTest extends TestCase
     public function test_it_interpolates_strings()
     {
         $this->assertEquals(
-            'This is a string that contains a variable',
+            'Este es un string que contiene un variable',
             __('laravel_standard_test.string_with_variable', [
-                'var' => 'a variable',
+                'var' => 'un variable',
             ]),
         );
     }
@@ -30,12 +37,12 @@ class BaseFunctionalityTest extends TestCase
     public function test_it_handles_pluralisation()
     {
         $this->assertEquals(
-            'There is 1 test',
-            trans_choice('laravel_standard_test.pluralisation', 1)
+            'Hay 1 prueba',
+            trans_choice('laravel_standard_test.pluralisation', 1),
         );
 
         $this->assertEquals(
-            'There are 2 tests',
+            'Hay 2 pruebas',
             trans_choice('laravel_standard_test.pluralisation', 2)
         );
     }
@@ -43,16 +50,16 @@ class BaseFunctionalityTest extends TestCase
     public function test_it_handles_pluralisation_with_interpolation()
     {
         $this->assertEquals(
-            'There is one test',
+            'Hay una prueba',
             trans_choice('laravel_standard_test.pluralisation_with_interpolation', 1, [
-                'value' => 'one',
+                'value' => 'una',
             ])
         );
 
         $this->assertEquals(
-            'There are two tests',
+            'Hay dos pruebas',
             trans_choice('laravel_standard_test.pluralisation_with_interpolation', 2, [
-                'value' => 'two',
+                'value' => 'dos',
             ])
         );
     }
