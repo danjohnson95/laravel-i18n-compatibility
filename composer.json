@@ -1,0 +1,56 @@
+{
+    "name": "danjohnson95/laravel-i18n-compatibility",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "DanJohnson95\\LaravelI18nCompatibility\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Dan Johnson",
+            "email": "github@danjohnson.xyz"
+        }
+    ],
+    "require": {
+        "illuminate/support": "^10.0|^11.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^8.24",
+        "phpunit/phpunit": "^10.4"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "DanJohnson95\\LaravelI18nCompatibility\\Tests\\": "tests/",
+            "App\\": "workbench/app/",
+            "Workbench\\App\\": "workbench/app/",
+            "Workbench\\Database\\Factories\\": "workbench/database/factories/",
+            "Workbench\\Database\\Seeders\\": "workbench/database/seeders/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "DanJohnson95\\LaravelI18nCompatibility\\ServiceProvider"
+            ]
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "@clear",
+            "@prepare"
+        ],
+        "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
+        "prepare": "@php vendor/bin/testbench package:discover --ansi",
+        "build": "@php vendor/bin/testbench workbench:build --ansi",
+        "test": "@php vendor/bin/phpunit",
+        "serve": [
+            "Composer\\Config::disableProcessTimeout",
+            "@build",
+            "@php vendor/bin/testbench serve"
+        ],
+        "lint": [
+            "@php vendor/bin/phpstan analyse"
+        ]
+    }
+}

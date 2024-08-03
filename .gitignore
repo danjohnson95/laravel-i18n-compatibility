@@ -1,0 +1,5 @@
+/vendor/
+composer.lock
+/skeleton/vendor
+/skeleton/storage/logs/*.log
+/skeleton/bootstrap/cache/*
