@@ -17,13 +17,13 @@ class Translator extends BaseTranslator
     {
         $replace['count'] = $number;
 
-        // If the key exists, use that.
-        if ($this->has($key)) {
-            return parent::choice($key, $number, $replace, $locale);
-        }
-
         // Otherwise, assume it's in i18next format.
         $locale = $this->localeForChoice($locale);
+
+        // If the key exists, use that.
+        if ($this->has($key, $locale, false)) {
+            return parent::choice($key, $number, $replace, $locale);
+        }
 
         // Find all the keys that relate to this one.
         $suffixes = collect([
