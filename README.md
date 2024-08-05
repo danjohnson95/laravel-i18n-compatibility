@@ -14,7 +14,6 @@ This package makes Laravel's translation work in tandem with frontend localisati
 Normally, your Laravel translation strings that interpolate variables would look like this:
 
 ```json
-    // resources/lang/en.json
     {
         "greeting": "Welcome, :name!"
     }
@@ -23,7 +22,6 @@ Normally, your Laravel translation strings that interpolate variables would look
 But with this package, you can also define your translation strings like this:
 
 ```json
-    // resources/lang/en.json
     {
         "greeting": "Welcome, {{name}}!"
     }
@@ -34,7 +32,6 @@ Meaning you can share that same translation string with your frontend localisati
 It works for pluralisation too. Laravel usually expects pluralisation strings to be delimited by a pipe character, like this:
 
 ```json
-    // resources/lang/en.json
     {
         "apples": "There is one apple|There are many apples"
     }
@@ -43,7 +40,6 @@ It works for pluralisation too. Laravel usually expects pluralisation strings to
 But with this package, you can also define your pluralisation strings like this:
 
 ```json
-    // resources/lang/en.json
     {
         "apples_one": "There is one apple",
         "apples_other": "There are many apples"
@@ -65,7 +61,6 @@ composer require danjohnson95/laravel-i18n-compatibility
 In Laravel, you can use your localisation strings exactly as you would normally.
 
 ```json
-    // resources/lang/en.json
     {
         "greeting": "Welcome, {{name}}!",
         "apples_one": "There is one apple",
@@ -74,7 +69,6 @@ In Laravel, you can use your localisation strings exactly as you would normally.
 ```
 
 ```php
-    // app/Http/Controllers/ExampleController.php
     public function index()
     {
         return response()->json([
